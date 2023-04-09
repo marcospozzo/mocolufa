@@ -1,5 +1,32 @@
+mocoLUFA fork (MIDI firmware for Arduino Uno)
+======================
 
-mocoLUFA (MIDI firmware for Arduino Uno)
+This is a detailed step-by-step usage of mocoLUFA by kuwatay.
+
+Generating the firmware HEX file:
+
+1. Clone this project locally.
+2. Open a terminal and navigate to Projects/mocolufa.
+3. Edit Descriptors.c file if needed: ProductString (MIDI device name), Manufacturer, ProductID.
+4. Open makefile file and verify that ARDUINO_MODEL_PID is set correctly for your Arduino model (UNO or MEGA).
+5. Run "make clean".
+6. Run "make".
+
+Upgrading the firmware using the one we just generated:
+
+1. Install dfu-programmer: "sudo apt-get install dfu-programmer".
+2. Connect the Arduino to Your Computer With a USB Cable.
+3. Reset the 8u2 or 16u2. To do this, briefly bridge the reset pin with the ground. The pins are located near the USB connector. Connect them briefly with a piece of wire.
+4. Run "sudo dfu-programmer atmega16u2 erase"
+5. Run "sudo dfu-programmer atmega16u2 flash dualMoco.hex". Must be done on directory Projects/mocolufa, where we generated the new HEX file.
+6. Run "sudo dfu-programmer atmega16u2 reset"
+7. Unplug Your Board and Plug It Back In.
+8. Optional: run "make clean" again if you want to cleanup the generated files.
+
+Now the dual boot is done. When connecting the Arduino: No bridged pins -> MIDI device. Bridge between ground pin and the first one next to the right -> Regular Arduino edit mode. (See arduino-pins-dual-boot-modes.png. Credit: Daniel Marcial).
+
+Docs: https://docs.arduino.cc/hacking/software/DFUProgramming8U2
+
 ======================
 dualMocoLUFA Project
 Copyright (C) 2013,2014,2015 by morecat_lab
