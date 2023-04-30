@@ -25,6 +25,11 @@ Upgrading the firmware using the one we just generated:
 
 Now the dual boot is done. When connecting the Arduino: No bridged pins -> MIDI device. Bridge between ground pin and the first one next to the right -> Regular Arduino edit mode. (See arduino-pins-dual-boot-modes.png. Credit: Daniel Marcial).
 
+Useful debug terminal commands:
+
+amidi -l // list midi devices
+lsusb // list usb devices
+
 Docs: https://docs.arduino.cc/hacking/software/DFUProgramming8U2
 
 ======================
